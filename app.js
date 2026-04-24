@@ -1,17 +1,13 @@
-const { log } = require('console');
-const os = require('os')
+import http from 'http';
 
-//info about user
-const user = os.userInfo()
-console.log(user);
+const server = http.createServer((req, res) => {
+  // 1. Set the response header
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
 
+  // 2. Send the response body
+  res.end('Hello !');
+});
 
-console.log(os.uptime())
-
-const currentOS = {
-    name: os.type(),
-    release: os.release(),
-    totalmem: os.totalmem(),
-    freemem: os.freemem()
-}
-log(currentOS)
+server.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
