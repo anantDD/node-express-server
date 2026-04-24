@@ -1,11 +1,16 @@
 import http from 'http';
 
 const server = http.createServer((req, res) => {
-  // 1. Set the response header
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-
-  // 2. Send the response body
-  res.end('Hello !');
+  if (req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Welcome to the Home Page');
+  } else if (req.url === '/about') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('This is the About Page');
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('404: Page Not Found');
+  }
 });
 
 server.listen(3000, () => {
